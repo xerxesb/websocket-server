@@ -43,7 +43,7 @@ async def run_loop(websocket, path):
     
     run_loop(websocket, path)
 
-start_server = websockets.serve(run_loop, "192.168.99.222", 8080)
+start_server = websockets.serve(run_loop, port=8080)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
