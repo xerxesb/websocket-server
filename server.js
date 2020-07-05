@@ -5,6 +5,8 @@ const wss = new WebSocket.Server({ port: 8080 });
 
 const pIds = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008];
 
+const STIM_INTERVAL = 80; //ms between stimulations
+
 let newPhosphene = (id, random = false) => {
   return { id: id, int: random ? Math.round(Math.random() * 10) / 10 : 1 }
 }
@@ -32,7 +34,7 @@ wss.on('connection', (ws) => {
     setInterval(() => {
       let payload = JSON.stringify(randomPhosphenes(4));
       // let payload = JSON.stringify(singlePhospheneSweep());
-      console.log(payload);
+      // console.log(payload);
       ws.send(payload);
-    }, 80);
+    }, STIM_INTERVAL);
 });
